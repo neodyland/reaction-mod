@@ -1,9 +1,14 @@
 name: Build and Push Docker Image (Bot)
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - master
+      - main
+    paths:
+        - 'apps/bot/**'
+        - '.github/workflows/build-bot.yml'
+        - 'packages/**'
 
 permissions:
   contents: read
