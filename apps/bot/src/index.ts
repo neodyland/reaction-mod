@@ -7,20 +7,14 @@ import {
   Client,
   GatewayIntentBits,
   Partials,
-  EmbedBuilder,
-  MessageReaction,
 } from "discord.js";
 import { env } from "@repo/env";
 
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
-    GatewayIntentBits.DirectMessages,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.GuildMessageReactions,
-    GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.DirectMessageReactions,
-    GatewayIntentBits.MessageContent,
   ],
   partials: [Partials.Message, Partials.Channel, Partials.Reaction],
 });
