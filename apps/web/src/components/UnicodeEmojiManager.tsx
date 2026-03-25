@@ -1,6 +1,6 @@
 "use client";
 
-import { updateUnicodeEmojiList } from "@/actions/settings";
+import { addUnicodeEmoji, removeUnicodeEmoji } from "@/actions/settings";
 import { Behaviour } from "@repo/db/types";
 import { useTransition, useState, useMemo } from "react";
 import { Twemoji } from "./Twemoji";
@@ -82,16 +82,9 @@ export function UnicodeEmojiManager({
     startTransition(async () => {
       const isInList = unicodeEmojiList.includes(emoji);
       if (isInList) {
-        await updateUnicodeEmojiList(
-          sessionId,
-          serverId,
-          unicodeEmojiList.filter((e) => e !== emoji)
-        );
+        await removeUnicodeEmoji(sessionId, serverId, emoji);
       } else {
-        await updateUnicodeEmojiList(sessionId, serverId, [
-          ...unicodeEmojiList,
-          emoji,
-        ]);
+        await addUnicodeEmoji(sessionId, serverId, emoji);
       }
     });
   };

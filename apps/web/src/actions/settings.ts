@@ -137,3 +137,54 @@ export async function updateUnicodeEmojiList(
 
   revalidatePath(`/settings/${sessionId}`);
 }
+
+export async function addUnicodeEmoji(
+  sessionId: string,
+  serverId: string,
+  emoji: string
+) {
+  const session = await getSessionData(sessionId);
+  if (!session || session.serverId !== serverId) {
+    throw new Error("Unauthorized");
+  }
+
+  await prisma.server.update({
+    where: { id: serverId },
+    data: {
+      unicodeEmojiList: {
+        push: emoji,
+      },
+    },
+  });
+
+  revalidatePath(`/settings/${sessionId}`);
+}
+
+export async function removeUnicodeEmoji(
+  sessionId: string,
+  serverId: string,
+  emoji: string
+) {
+  const session = await getSessionData(sessionId);
+  if (!session || session.serverId !== serverId) {
+    throw new Error("Unauthorized");
+  }
+
+  const server = await prisma.server.findUnique({
+    where: { id: serverId },
+    select: { unicodeEmojiList: true },
+  });
+
+  if (!server) {
+    throw new Error("Server not found");
+  }
+
+  await prisma.server.update({
+    where: { id: serverId },
+    data: {
+      unicodeEmojiList: server.unicodeEmojiList.filter((e) => e !== emoji),
+    },
+  });
+
+  revalidatePath(`/settings/${sessionId}`);
+}
