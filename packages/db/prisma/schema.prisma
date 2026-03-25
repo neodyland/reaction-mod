@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Behaviour {
+  BLACKLIST
+  WHITELIST
+}
+
+enum Action {
+  DELETE
+  TIMEOUT
+}
+
+model Server {
+  id               String        @id
+  enabled          Boolean       @default(false)
+  behaviour        Behaviour     @default(BLACKLIST)
+  action           Action        @default(DELETE)
+  logChannelId     String?
+  timeoutDuration  Int?          @default(600)
+  unicodeEmojiList String[]      @default([])
+  Emojis           Emoji[]
+  TextChannels     TextChannel[]
+}
+
+model TextChannel {
+  id       String @id
+  name     String
+  server   Server @relation(fields: [serverId], references: [id])
+  serverId String
+}
+
+model Emoji {
+  id         String  @id
+  name       String
+  isAnimated Boolean
+  isInList   Boolean @default(false)
+  server     Server  @relation(fields: [serverId], references: [id])
+  serverId   String
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  serverId  String
+  createdAt DateTime @default(now())
+}

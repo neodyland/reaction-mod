@@ -1,0 +1,21 @@
+{
+  "name": "bot",
+  "module": "src/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --env-file=../../.env --watch src/index.ts",
+    "build": "bun build --env-file=../../.env --compile src/index.ts --outfile bot"
+  },
+  "dependencies": {
+    "@repo/db": "*",
+    "@repo/env": "*",
+    "discord.js": "^14.25.1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
