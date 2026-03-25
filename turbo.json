@@ -2,7 +2,7 @@
   "$schema": "https://turborepo.dev/schema.json",
   "ui": "tui",
   "globalEnv": ["DATABASE_URL"],
-  "globalPassThroughEnv": ["DATABASE_URL", "BOT_TOKEN", "DISCORD_CLIENT_ID", "DISCORD_CLIENT_SECRET", "SESSION_LENGTH", "AUTH_REDIIRECT_URI", "AUTH_SECRET"],
+  "globalPassThroughEnv": ["DATABASE_URL", "BOT_TOKEN", "DISCORD_CLIENT_ID", "DISCORD_CLIENT_SECRET", "SESSION_LENGTH", "AUTH_REDIRECT_URI", "AUTH_SECRET"],
   "tasks": {
     "build": {
       "dependsOn": ["^build", "db:generate"],
