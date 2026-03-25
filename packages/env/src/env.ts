@@ -2,6 +2,7 @@ import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
 export const env = createEnv({
+  skipValidation: process.env.CI === "true",
   server: {
     DATABASE_URL: z.string(),
     BOT_TOKEN: z.string(),
