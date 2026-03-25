@@ -4,6 +4,7 @@ import {
   type CommandInteraction,
 } from "discord.js";
 import type { BotCommand } from "@/types/command";
+import { getCommand } from "@/commands";
 
 function hasPermissions(
   memberPermissions: Readonly<PermissionsBitField> | null,
@@ -23,10 +24,16 @@ function createErrorEmbed(title: string, description: string): EmbedBuilder {
 
 export async function handleCommand(interaction: CommandInteraction) {
   try {
-    const commandModule = await import(
-      `../commands/${interaction.commandName}.ts`
-    );
-    const command = commandModule.default as BotCommand;
+    const command = getCommand(interaction.commandName);
+
+    if (!command) {
+      const embed = createErrorEmbed(
+        "Command Not Found",
+        "This command could not be found."
+      );
+      await interaction.reply({ embeds: [embed], flags: "Ephemeral" });
+      return;
+    }
 
     if (!command.slashCommand.enabled) {
       const embed = createErrorEmbed(

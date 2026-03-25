@@ -7,9 +7,11 @@ import { LogChannelSelector } from "@/components/LogChannelSelector";
 import { TimeoutDurationInput } from "@/components/TimeoutDurationInput";
 import { EmojiList } from "@/components/EmojiList";
 import { UnicodeEmojiManager } from "@/components/UnicodeEmojiManager";
+import { LoginScreen } from "@/components/LoginScreen";
 import { getSession } from "@mikandev/next-discord-auth/server-actions";
 import { unauthorized } from "next/navigation";
 import { Behaviour } from "@repo/db/types";
+import { FaInfoCircle } from "react-icons/fa";
 import "@/lib/auth"
 
 export default async function SettingsPage({
@@ -23,12 +25,16 @@ export default async function SettingsPage({
     getSessionData(id),
     getSession(),
   ]);
+  
+  if (!discordSession) {
+    return <LoginScreen />;
+  }
 
   if (!sessionData) {
     notFound();
   }
 
-  if (!discordSession || discordSession.user.id !== sessionData.userId) {
+  if (discordSession.user.id !== sessionData.userId) {
     unauthorized();
   }
 
@@ -100,19 +106,7 @@ export default async function SettingsPage({
                 <div className="card-body">
                   <h2 className="card-title text-2xl mb-4">Custom Emojis</h2>
                   <div className="alert alert-info mb-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      className="stroke-current shrink-0 w-6 h-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
+                    <FaInfoCircle className="shrink-0 w-6 h-6" />
                     <span>
                       Click an emoji to{" "}
                       {server.behaviour === Behaviour.BLACKLIST
