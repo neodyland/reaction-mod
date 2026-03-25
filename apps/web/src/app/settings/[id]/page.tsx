@@ -9,7 +9,7 @@ import { EmojiList } from "@/components/EmojiList";
 import { UnicodeEmojiManager } from "@/components/UnicodeEmojiManager";
 import { getSession } from "@mikandev/next-discord-auth/server-actions";
 import { unauthorized } from "next/navigation";
-import { Behaviour } from "@repo/db";
+import { Behaviour } from "@repo/db/types";
 import "@/lib/auth"
 
 export default async function SettingsPage({
