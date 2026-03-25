@@ -7,7 +7,8 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "build:bot": "turbo run build --filter=bot"
+    "build:bot": "turbo run build --filter=bot",
+    "postinstall": "turbo run db:generate"
   },
   "devDependencies": {
     "@types/react-window": "^2.0.0",
