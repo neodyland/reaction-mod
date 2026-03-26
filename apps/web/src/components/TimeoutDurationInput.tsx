@@ -33,7 +33,9 @@ export function TimeoutDurationInput({
   return (
     <div className="form-control">
       <label className="label">
-        <span className="label-text font-semibold">Timeout Duration (seconds)</span>
+        <span className="label-text font-semibold">
+          Timeout Duration (seconds)
+        </span>
       </label>
       <input
         type="number"

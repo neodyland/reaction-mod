@@ -11,7 +11,7 @@ export const env = createEnv({
     ADMIN_APP_URL: z.string(),
     SESSION_LENGTH: z.coerce.number().default(600),
     AUTH_REDIRECT_URI: z.string(),
-    AUTH_SECRET: z.string()
+    AUTH_SECRET: z.string(),
   },
   client: {},
   runtimeEnv: {
@@ -22,6 +22,6 @@ export const env = createEnv({
     ADMIN_APP_URL: process.env.ADMIN_APP_URL,
     SESSION_LENGTH: process.env.SESSION_LENGTH,
     AUTH_REDIRECT_URI: process.env.AUTH_REDIRECT_URI,
-    AUTH_SECRET: process.env.AUTH_SECRET
+    AUTH_SECRET: process.env.AUTH_SECRET,
   },
 });

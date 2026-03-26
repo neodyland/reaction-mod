@@ -5,7 +5,7 @@ import type { CommandInteraction, PermissionResolvable } from "discord.js";
  * Returns null if valid, or an error message string if invalid.
  */
 export type ValidationFunction = (
-  interaction: CommandInteraction
+  interaction: CommandInteraction,
 ) => Promise<string | null> | string | null;
 
 /**

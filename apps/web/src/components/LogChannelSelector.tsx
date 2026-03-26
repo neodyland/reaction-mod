@@ -23,7 +23,7 @@ export function LogChannelSelector({
       await updateLogChannel(
         sessionId,
         serverId,
-        channelId === "" ? null : channelId
+        channelId === "" ? null : channelId,
       );
     });
   };
@@ -47,9 +47,7 @@ export function LogChannelSelector({
         ))}
       </select>
       <label className="label">
-        <span className="label-text-alt">
-          Where to send moderation logs
-        </span>
+        <span className="label-text-alt">Where to send moderation logs</span>
       </label>
     </div>
   );

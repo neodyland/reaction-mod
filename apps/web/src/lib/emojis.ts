@@ -26,7 +26,7 @@ export function searchEmojis(query: string): EmojiData[] {
     return (
       emoji.name.toLowerCase().includes(lowerQuery) ||
       emoji.keywords.some((keyword) =>
-        keyword.toLowerCase().replace(/_/g, " ").includes(lowerQuery)
+        keyword.toLowerCase().replace(/_/g, " ").includes(lowerQuery),
       ) ||
       emoji.emoji === lowerQuery
     );

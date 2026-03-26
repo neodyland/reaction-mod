@@ -3,11 +3,7 @@ import { setPresence } from "@/presence";
 import { handleCommand } from "@/handlers/command";
 import { handleReaction } from "@/handlers/reaction";
 import { syncTextChannels, syncEmojis } from "@/lib/syncData";
-import {
-  Client,
-  GatewayIntentBits,
-  Partials,
-} from "discord.js";
+import { Client, GatewayIntentBits, Partials } from "discord.js";
 import { env } from "@repo/env";
 
 const client = new Client({

@@ -5,6 +5,6 @@ import type { NextRequest } from "next/server";
 import "@/lib/auth";
 
 export const GET = async (request: NextRequest) => {
-    await handleRedirect(request);
-    redirect("/");
+  await handleRedirect(request);
+  redirect("/");
 };

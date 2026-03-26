@@ -51,7 +51,7 @@ export default {
     const embed = new EmbedBuilder()
       .setTitle("Server Settings")
       .setDescription(
-        "Click the button below to configure your server's emoji moderation settings. This URL will be valid for 10 minutes."
+        "Click the button below to configure your server's emoji moderation settings. This URL will be valid for 10 minutes.",
       )
       .setColor("#5865F2");
 

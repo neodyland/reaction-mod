@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Reaction Moderator",
-  description: "A Discord bot that automatically removes reaction spam and offensive reactions.",
+  description:
+    "A Discord bot that automatically removes reaction spam and offensive reactions.",
 };
 
 export default function RootLayout({
@@ -27,7 +28,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col" data-theme={"neody"}>
+        {children}
+      </body>
     </html>
   );
 }

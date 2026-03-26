@@ -12,7 +12,7 @@ export const commands: BotCommand[] = [ping, settings];
  * Command map for quick lookups by command name
  */
 export const commandMap = new Map<string, BotCommand>(
-  commands.map((cmd) => [cmd.name, cmd])
+  commands.map((cmd) => [cmd.name, cmd]),
 );
 
 /**

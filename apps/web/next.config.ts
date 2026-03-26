@@ -4,8 +4,8 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
   experimental: {
-    authInterrupts: true
-  }
+    authInterrupts: true,
+  },
 };
 
 export default nextConfig;

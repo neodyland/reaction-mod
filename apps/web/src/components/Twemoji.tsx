@@ -18,9 +18,6 @@ export function Twemoji({ emoji, className = "" }: TwemojiProps) {
   }, [emoji]);
 
   return (
-    <span
-      className={className}
-      dangerouslySetInnerHTML={{ __html: html }}
-    />
+    <span className={className} dangerouslySetInnerHTML={{ __html: html }} />
   );
 }

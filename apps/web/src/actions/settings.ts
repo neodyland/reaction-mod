@@ -7,7 +7,7 @@ import { getSessionData } from "@/lib/data";
 export async function updateServerEnabled(
   sessionId: string,
   serverId: string,
-  enabled: boolean
+  enabled: boolean,
 ) {
   const session = await getSessionData(sessionId);
   if (!session || session.serverId !== serverId) {
@@ -25,7 +25,7 @@ export async function updateServerEnabled(
 export async function updateServerBehaviour(
   sessionId: string,
   serverId: string,
-  behaviour: Behaviour
+  behaviour: Behaviour,
 ) {
   const session = await getSessionData(sessionId);
   if (!session || session.serverId !== serverId) {
@@ -43,7 +43,7 @@ export async function updateServerBehaviour(
 export async function updateServerAction(
   sessionId: string,
   serverId: string,
-  action: Action
+  action: Action,
 ) {
   const session = await getSessionData(sessionId);
   if (!session || session.serverId !== serverId) {
@@ -61,7 +61,7 @@ export async function updateServerAction(
 export async function updateLogChannel(
   sessionId: string,
   serverId: string,
-  logChannelId: string | null
+  logChannelId: string | null,
 ) {
   const session = await getSessionData(sessionId);
   if (!session || session.serverId !== serverId) {
@@ -79,7 +79,7 @@ export async function updateLogChannel(
 export async function updateTimeoutDuration(
   sessionId: string,
   serverId: string,
-  timeoutDuration: number
+  timeoutDuration: number,
 ) {
   const session = await getSessionData(sessionId);
   if (!session || session.serverId !== serverId) {
@@ -97,7 +97,7 @@ export async function updateTimeoutDuration(
 export async function toggleEmojiInList(
   sessionId: string,
   serverId: string,
-  emojiId: string
+  emojiId: string,
 ) {
   const session = await getSessionData(sessionId);
   if (!session || session.serverId !== serverId) {
@@ -123,7 +123,7 @@ export async function toggleEmojiInList(
 export async function updateUnicodeEmojiList(
   sessionId: string,
   serverId: string,
-  unicodeEmojiList: string[]
+  unicodeEmojiList: string[],
 ) {
   const session = await getSessionData(sessionId);
   if (!session || session.serverId !== serverId) {
@@ -141,7 +141,7 @@ export async function updateUnicodeEmojiList(
 export async function addUnicodeEmoji(
   sessionId: string,
   serverId: string,
-  emoji: string
+  emoji: string,
 ) {
   const session = await getSessionData(sessionId);
   if (!session || session.serverId !== serverId) {
@@ -163,7 +163,7 @@ export async function addUnicodeEmoji(
 export async function removeUnicodeEmoji(
   sessionId: string,
   serverId: string,
-  emoji: string
+  emoji: string,
 ) {
   const session = await getSessionData(sessionId);
   if (!session || session.serverId !== serverId) {

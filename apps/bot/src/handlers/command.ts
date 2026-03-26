@@ -8,7 +8,7 @@ import { getCommand } from "@/commands";
 
 function hasPermissions(
   memberPermissions: Readonly<PermissionsBitField> | null,
-  requiredPermissions: bigint[]
+  requiredPermissions: bigint[],
 ): boolean {
   if (!memberPermissions) return false;
   return requiredPermissions.every((perm) => memberPermissions.has(perm));
@@ -29,7 +29,7 @@ export async function handleCommand(interaction: CommandInteraction) {
     if (!command) {
       const embed = createErrorEmbed(
         "Command Not Found",
-        "This command could not be found."
+        "This command could not be found.",
       );
       await interaction.reply({ embeds: [embed], flags: "Ephemeral" });
       return;
@@ -38,7 +38,7 @@ export async function handleCommand(interaction: CommandInteraction) {
     if (!command.slashCommand.enabled) {
       const embed = createErrorEmbed(
         "Command Disabled",
-        "This command is currently disabled."
+        "This command is currently disabled.",
       );
       await interaction.reply({ embeds: [embed], flags: "Ephemeral" });
       return;
@@ -46,13 +46,14 @@ export async function handleCommand(interaction: CommandInteraction) {
 
     if (command.botPermissions.length > 0) {
       const botMember = interaction.guild?.members.me;
-      const requiredPerms = new PermissionsBitField(command.botPermissions).bitfield;
+      const requiredPerms = new PermissionsBitField(command.botPermissions)
+        .bitfield;
       const missingPerms = new PermissionsBitField(requiredPerms);
 
       if (!hasPermissions(botMember?.permissions ?? null, [requiredPerms])) {
         const embed = createErrorEmbed(
           "Missing Bot Permissions",
-          `I need the following permissions to execute this command:\n\`${missingPerms.toArray().join("`, `")}\``
+          `I need the following permissions to execute this command:\n\`${missingPerms.toArray().join("`, `")}\``,
         );
         await interaction.reply({ embeds: [embed], flags: "Ephemeral" });
         return;
@@ -61,13 +62,14 @@ export async function handleCommand(interaction: CommandInteraction) {
 
     if (command.userPermissions.length > 0) {
       const member = interaction.guild?.members.cache.get(interaction.user.id);
-      const requiredPerms = new PermissionsBitField(command.userPermissions).bitfield;
+      const requiredPerms = new PermissionsBitField(command.userPermissions)
+        .bitfield;
       const missingPerms = new PermissionsBitField(requiredPerms);
 
       if (!hasPermissions(member?.permissions ?? null, [requiredPerms])) {
         const embed = createErrorEmbed(
           "Missing Permissions",
-          `You need the following permissions to use this command:\n\`${missingPerms.toArray().join("`, `")}\``
+          `You need the following permissions to use this command:\n\`${missingPerms.toArray().join("`, `")}\``,
         );
         await interaction.reply({ embeds: [embed], flags: "Ephemeral" });
         return;
@@ -88,7 +90,7 @@ export async function handleCommand(interaction: CommandInteraction) {
     console.error(`Error while executing command:`, error);
     const errorEmbed = createErrorEmbed(
       "An error occurred while executing this command!",
-      `An error occurred while executing this command.\n\nPlease contact support if this persists.`
+      `An error occurred while executing this command.\n\nPlease contact support if this persists.`,
     );
 
     if (interaction.replied || interaction.deferred) {

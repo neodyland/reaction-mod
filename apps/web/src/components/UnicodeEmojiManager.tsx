@@ -38,9 +38,9 @@ function EmojiGrid({
     <div
       className="border border-base-300 rounded-lg p-2 max-h-96 overflow-y-auto"
       style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(48px, 1fr))',
-        gap: '0.5rem',
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, minmax(48px, 1fr))",
+        gap: "0.5rem",
       }}
     >
       {emojis.map((emoji) => {
@@ -54,8 +54,8 @@ function EmojiGrid({
             className={`btn btn-sm ${buttonClass} w-full h-12 p-0`}
             title={emoji.name}
             style={{
-              contentVisibility: 'auto',
-              contain: 'layout style paint',
+              contentVisibility: "auto",
+              contain: "layout style paint",
             }}
           >
             <Twemoji emoji={emoji.emoji} className="w-5 h-5" />
@@ -98,13 +98,19 @@ export function UnicodeEmojiManager({
   }, [searchQuery, showAll]);
 
   const listedEmojis = useMemo(
-    () => filteredEmojis.filter((e) => e && e.emoji && unicodeEmojiList.includes(e.emoji)),
-    [filteredEmojis, unicodeEmojiList]
+    () =>
+      filteredEmojis.filter(
+        (e) => e && e.emoji && unicodeEmojiList.includes(e.emoji),
+      ),
+    [filteredEmojis, unicodeEmojiList],
   );
 
   const unlistedEmojis = useMemo(
-    () => filteredEmojis.filter((e) => e && e.emoji && !unicodeEmojiList.includes(e.emoji)),
-    [filteredEmojis, unicodeEmojiList]
+    () =>
+      filteredEmojis.filter(
+        (e) => e && e.emoji && !unicodeEmojiList.includes(e.emoji),
+      ),
+    [filteredEmojis, unicodeEmojiList],
   );
 
   const hasMore = !searchQuery && !showAll && emojiData.length > INITIAL_LIMIT;
@@ -125,7 +131,8 @@ export function UnicodeEmojiManager({
         />
         <label className="label">
           <span className="label-text-alt">
-            Try searching for &quot;heart&quot;, &quot;smile&quot;, or any Discord emoji name
+            Try searching for &quot;heart&quot;, &quot;smile&quot;, or any
+            Discord emoji name
           </span>
         </label>
       </div>
@@ -143,7 +150,8 @@ export function UnicodeEmojiManager({
         </h3>
         {listedEmojis.length === 0 ? (
           <p className="text-sm text-base-content/60">
-            No unicode emojis {behaviour === Behaviour.BLACKLIST ? "blocked" : "allowed"}
+            No unicode emojis{" "}
+            {behaviour === Behaviour.BLACKLIST ? "blocked" : "allowed"}
           </p>
         ) : (
           <EmojiGrid
@@ -165,7 +173,8 @@ export function UnicodeEmojiManager({
               : "Blocked Unicode Emojis"}
             {unlistedEmojis.length > 0 && (
               <span className="ml-2 text-sm font-normal text-base-content/60">
-                ({unlistedEmojis.length}{hasMore && `/${emojiData.length}`})
+                ({unlistedEmojis.length}
+                {hasMore && `/${emojiData.length}`})
               </span>
             )}
           </h3>

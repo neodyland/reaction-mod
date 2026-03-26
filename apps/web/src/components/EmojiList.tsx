@@ -37,11 +37,14 @@ export function EmojiList({
     <div className="space-y-4">
       <div>
         <h3 className="text-lg font-semibold mb-3">
-          {behaviour === Behaviour.BLACKLIST ? "Blocked Emojis" : "Allowed Emojis"}
+          {behaviour === Behaviour.BLACKLIST
+            ? "Blocked Emojis"
+            : "Allowed Emojis"}
         </h3>
         {listedEmojis.length === 0 ? (
           <p className="text-sm text-base-content/60">
-            No emojis {behaviour === Behaviour.BLACKLIST ? "blocked" : "allowed"} yet
+            No emojis{" "}
+            {behaviour === Behaviour.BLACKLIST ? "blocked" : "allowed"} yet
           </p>
         ) : (
           <div className="flex flex-wrap gap-2">
@@ -69,7 +72,9 @@ export function EmojiList({
 
       <div>
         <h3 className="text-lg font-semibold mb-3">
-          {behaviour === Behaviour.BLACKLIST ? "Available Emojis" : "Blocked Emojis"}
+          {behaviour === Behaviour.BLACKLIST
+            ? "Available Emojis"
+            : "Blocked Emojis"}
         </h3>
         {unlistedEmojis.length === 0 ? (
           <p className="text-sm text-base-content/60">

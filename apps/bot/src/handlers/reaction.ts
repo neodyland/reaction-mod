@@ -9,7 +9,7 @@ import {
 
 export async function handleReaction(
   reaction: MessageReaction | PartialMessageReaction,
-  user: User | PartialUser
+  user: User | PartialUser,
 ) {
   if (!reaction.message.guild) return;
 
@@ -38,7 +38,9 @@ export async function handleReaction(
       if (!emoji) return;
 
       isBanned =
-        server.behaviour === Behaviour.BLACKLIST ? emoji.isInList : !emoji.isInList;
+        server.behaviour === Behaviour.BLACKLIST
+          ? emoji.isInList
+          : !emoji.isInList;
       emojiDisplay = `<:${emoji.name}:${emoji.id}>`;
     } else {
       const unicodeEmoji = reaction.emoji.name;
@@ -64,13 +66,13 @@ export async function handleReaction(
 
     if (server.logChannelId) {
       const logChannel = await reaction.message.guild.channels.fetch(
-        server.logChannelId
+        server.logChannelId,
       );
       if (logChannel?.isTextBased()) {
         const embed = new EmbedBuilder()
           .setTitle("Reaction Moderated")
           .setDescription(
-            `User: <@${user.id}>\nEmoji: ${emojiDisplay}\nAction: ${server.action}\nChannel: <#${reaction.message.channel.id}>\nMessage: [Jump to message](${reaction.message.url})`
+            `User: <@${user.id}>\nEmoji: ${emojiDisplay}\nAction: ${server.action}\nChannel: <#${reaction.message.channel.id}>\nMessage: [Jump to message](${reaction.message.url})`,
           )
           .setColor("#FF0000")
           .setTimestamp();

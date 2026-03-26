@@ -11,7 +11,7 @@ export const syncTextChannels = async (guild: Guild) => {
 
   const channels = await guild.channels.fetch();
   const textChannels = channels.filter(
-    (channel) => channel?.type === ChannelType.GuildText
+    (channel) => channel?.type === ChannelType.GuildText,
   );
 
   for (const [_, channel] of textChannels) {
